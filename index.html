@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Ask Your Doctor — Atopic Dermatitis Journey | GAAPP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css" />
+<style>
+  /* ---------- Design tokens (these are normally supplied by the host app) ---------- */
+  :root {
+    --color-text-primary:    #15201c;
+    --color-text-secondary:  #51635c;
+    --color-text-tertiary:   #7c8a84;
+
+    --color-background-primary:   #ffffff;
+    --color-background-secondary: #f4f7f5;
+
+    --color-border-primary:   #d7e0db;
+    --color-border-secondary: #e6ece9;
+
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 18px;
+
+    /* page chrome */
+    --brand:        #0F6E56;   /* GAAPP green */
+    --brand-soft:   #E1F5EE;
+    --page-bg:      #eef2f0;
+    --shadow:       0 1px 2px rgba(21,32,28,.04), 0 8px 28px rgba(21,32,28,.08);
+    --shadow-sm:    0 1px 2px rgba(21,32,28,.05), 0 2px 8px rgba(21,32,28,.05);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--page-bg);
+    color: var(--color-text-primary);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+  }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Page layout ---------- */
+  .page-wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: clamp(16px, 4vw, 40px) clamp(14px, 4vw, 32px) 64px;
+  }
+
+  /* Top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .topbar .logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 22px;
+    flex: 0 0 auto;
+  }
+  .topbar .brand-name {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .01em;
+    color: var(--color-text-primary);
+  }
+  .topbar .brand-sub {
+    font-size: 12.5px;
+    color: var(--color-text-tertiary);
+  }
+  .topbar .pill {
+    margin-left: auto;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: var(--brand-soft);
+    border-radius: 999px;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  /* Hero header */
+  .hero {
+    background: linear-gradient(135deg, #0F6E56 0%, #128e6e 100%);
+    color: #fff;
+    border-radius: var(--border-radius-lg);
+    padding: clamp(22px, 5vw, 34px) clamp(20px, 5vw, 36px);
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -.01em;
+  }
+  .hero p {
+    margin: 0;
+    font-size: clamp(14px, 2.4vw, 16px);
+    line-height: 1.55;
+    color: rgba(255,255,255,.9);
+    max-width: 62ch;
+  }
+  .hero .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 18px;
+  }
+  .hero .hero-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: rgba(255,255,255,.92);
+  }
+  .hero .hero-meta i { font-size: 16px; }
+
+  /* Main card that holds the interactive widget */
+  .card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    padding: clamp(18px, 4vw, 30px);
+  }
+
+  /* ---------- Buttons (host normally provides a base style) ---------- */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius-md);
+    padding: 8px 13px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+  }
+  button:hover { background: var(--color-background-secondary); border-color: var(--color-border-primary); }
+  button:active { transform: translateY(0.5px); }
+  button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+  }
+
+  /* ---------- sendPrompt modal ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(21,32,28,.45);
+    backdrop-filter: blur(2px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 50;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    max-width: 460px;
+    width: 100%;
+    padding: 24px;
+    animation: pop .16s ease;
+  }
+  @keyframes pop { from { transform: scale(.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .modal h3 i { color: var(--brand); }
+  .modal .sub { font-size: 12.5px; color: var(--color-text-secondary); margin: 0 0 14px; }
+  .modal .prompt-box {
+    background: var(--color-background-secondary);
+    border: 1px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 13px 15px;
+    font-size: 13.5px;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+  }
+  .modal .modal-actions { display: flex; justify-content: flex-end; margin-top: 16px; }
+  .modal .modal-actions button {
+    background: var(--brand); color: #fff; border-color: var(--brand);
+  }
+  .modal .modal-actions button:hover { background: #0c5b48; border-color: #0c5b48; }
+
+  @media (max-width: 480px) {
+    .topbar .brand-sub { display: none; }
+    .topbar .pill { display: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="page-wrap">
+    <div class="topbar">
+      <span class="logo" aria-hidden="true"><i class="ti ti-heart-handshake"></i></span>
+      <div>
+        <div class="brand-name">GAAPP &middot; Ask Your Doctor</div>
+        <div class="brand-sub">AI appointment-prep companion</div>
+      </div>
+      <span class="pill">Interactive demo</span>
+    </div>
+
+    <header class="hero">
+      <h1>The Atopic Dermatitis appointment journey</h1>
+      <p>
+        A walkthrough of how the Ask Your Doctor avatar meets patients and caregivers at each stage,
+        adapts its tone to where they are emotionally, and surfaces the right questions to bring to a
+        real appointment. Toggle the lane, then step through the six stages.
+      </p>
+      <div class="hero-meta">
+        <span><i class="ti ti-users" aria-hidden="true"></i> Two lanes: caregiver &amp; patient</span>
+        <span><i class="ti ti-stairs" aria-hidden="true"></i> Six journey stages</span>
+        <span><i class="ti ti-file-text" aria-hidden="true"></i> Ends in a printable question list</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <!-- ====== interactive explainer (host fragment, made standalone) ====== -->
+      <h2 class="sr-only">Interactive prototype of the Ask Your Doctor atopic dermatitis journey for client demo. Toggle between caregiver and patient, then click any of the six stages to see the user's emotional state, how the avatar adapts its tone, the questions the session surfaces, and how sensitive topics are handled non-directively.</h2>
+
+      <div style="padding: 0.25rem 0 0;">
+        <div style="display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:6px;">
+          <span style="font-size:13px; color:var(--color-text-secondary);">Viewing as</span>
+          <button id="laneCare" aria-pressed="true" style="display:inline-flex; align-items:center; gap:6px;"><i class="ti ti-users" aria-hidden="true" style="font-size:16px;"></i> Caregiver / parent</button>
+          <button id="lanePat" aria-pressed="false" style="display:inline-flex; align-items:center; gap:6px;"><i class="ti ti-user" aria-hidden="true" style="font-size:16px;"></i> Patient / self</button>
+        </div>
+        <p style="font-size:12.5px; color:var(--color-text-tertiary); margin:0 0 14px; line-height:1.6;">~80% of atopic dermatitis patients are age 5 or under, so the caregiver lane is primary. Non-directive throughout, plain language, grounded in input from Dr. Lio and a caregiver advocate.</p>
+
+        <div id="steps" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;"></div>
+
+        <div id="panel" style="background:var(--color-background-primary); border:0.5px solid var(--color-border-secondary); border-radius:var(--border-radius-lg); padding:1.1rem 1.25rem;"></div>
+
+        <div style="display:flex; align-items:center; gap:10px; margin-top:14px; background:#E1F5EE; border-radius:var(--border-radius-md); padding:12px 14px;">
+          <i class="ti ti-file-text" aria-hidden="true" style="font-size:20px; color:#0F6E56;"></i>
+          <span style="font-size:13.5px; color:#085041;">Every session ends with a personalized PDF of questions to bring to the real appointment.</span>
+        </div>
+      </div>
+      <!-- ====== /interactive explainer ====== -->
+    </section>
+
+    <p class="footer">GAAPP &middot; Ask Your Doctor &mdash; demo build for client walkthrough. Prepared by Pulse Marketing.</p>
+  </main>
+
+  <!-- sendPrompt modal -->
+  <div class="modal-overlay" id="promptModal" role="dialog" aria-modal="true" aria-labelledby="promptModalTitle">
+    <div class="modal">
+      <h3 id="promptModalTitle"><i class="ti ti-sparkles" aria-hidden="true"></i> In the live product</h3>
+      <p class="sub">This button hands the avatar a context-aware prompt. In production it streams a response in-conversation. Here is what it would send:</p>
+      <div class="prompt-box" id="promptText"></div>
+      <div class="modal-actions">
+        <button type="button" id="promptClose">Got it</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  var lanes = {
+    caregiver: {accent:"#BA7517", fill:"#FAEEDA", text:"#633806", soft:"#854F0B"},
+    patient:   {accent:"#1D9E75", fill:"#E1F5EE", text:"#085041", soft:"#0F6E56"}
+  };
+  var titles = ["Intake","Noticing & searching","Newly diagnosed","Starting treatment","Living with it","Escalating care"];
+  var data = {
+    caregiver: [
+      {state:"Just arrived, unsure where to start", tone:"Warm welcome, one simple question", q:["Are we discussing your skin, or your child's?","How old is your child?","Where are you in the journey?","Is this a first visit or a follow-up?"]},
+      {state:"Worried, second-guessed, googling", tone:"Calm, orienting, lowers alarm", q:["What could be causing my child's rash?","Is this eczema, or something else?","Are the creams and remedies we've tried okay to keep using?","What should I write down or photograph before the visit?"]},
+      {state:"Overwhelmed, information overload", tone:"Slow, validating, plain words", q:["What does atopic dermatitis mean long-term, curable or managed?","What should our daily skin routine look like?","What makes it flare, and how do we spot triggers?","What else can come with eczema later (eye issues, asthma, allergies)?"]},
+      {state:"Hopeful but fearful, especially steroids", tone:"Structured, neutral, non-directive", q:["What are the benefits and risks for a young child?","How do we use steroids safely, and what is topical steroid withdrawal?","Are there newer or non-steroid options?","We've tried natural remedies, what should the doctor know?"], care:"Steroids and topical steroid withdrawal are surfaced as questions to ask the doctor, never as instructions to start, stop, or change treatment."},
+      {state:"Flare fatigue, stretched thin", tone:"Practical, warm, acknowledges fatigue", q:["How do we handle sudden flares, and what emergency meds should we have ready?","Is my child's current treatment still the right one?","How do we manage itch and protect sleep?","Where can our family get mental-health or peer support?"], care:"Mental-health and peer support are raised gently as questions for the doctor, never as a diagnosis."},
+      {state:"Frustrated, determined to find next step", tone:"Focused, helps prioritize the asks", q:["What are the options if this isn't working?","Should we see a specialist, and how do we get a referral?","Is my child a candidate for advanced treatments or biologics?","What's the plan from here, and how will we measure progress?"]}
+    ],
+    patient: [
+      {state:"Just arrived, unsure where to start", tone:"Warm welcome, one simple question", q:["Is this about your own skin?","Where are you with this right now?","What's prompting the visit?"]},
+      {state:"Unsure what's normal", tone:"Calm, orienting, lowers alarm", q:["What should I track before my visit?","Which symptoms matter most to mention?","Is this eczema, or something else?"]},
+      {state:"Anxious, many questions", tone:"Slow, validating, plain words", q:["What does this diagnosis mean day-to-day?","Is this lifelong, or can it be managed?","What triggers should I watch for?"]},
+      {state:"Evaluating treatment options", tone:"Structured, neutral, non-directive", q:["How do these treatments compare?","What should I expect in the first few weeks?","What are the side effects, and how is this used safely?"], care:"Steroid use and alternative remedies are framed as questions to raise with the doctor, never as advice."},
+      {state:"Frustrated by the ongoing effort", tone:"Practical, warm, acknowledges fatigue", q:["What can I adjust when it flares?","When should I come back in?","How do I manage itch and sleep?","Where can I find peer support?"]},
+      {state:"Ready to advocate for more", tone:"Focused, helps prioritize the asks", q:["What's the next level of treatment?","Am I a candidate for a referral or biologic?","What should I ask if this isn't working?"]}
+    ]
+  };
+
+  var lane = "caregiver", stage = 0;
+  var stepsEl = document.getElementById("steps");
+  var panelEl = document.getElementById("panel");
+  var cBtn = document.getElementById("laneCare");
+  var pBtn = document.getElementById("lanePat");
+
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+
+  function renderSteps(){
+    var a = lanes[lane];
+    stepsEl.innerHTML = "";
+    titles.forEach(function(t,i){
+      var b = document.createElement("button");
+      var active = i===stage;
+      b.style.cssText = "display:inline-flex; align-items:center; gap:7px; font-size:12.5px; padding:7px 11px;" +
+        (active ? ("background:"+a.fill+"; border:2px solid "+a.accent+"; color:"+a.text+";") : "");
+      b.innerHTML = '<span style="display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; font-size:11px;'+
+        (active?("background:"+a.accent+"; color:#fff;"):"background:var(--color-background-secondary); color:var(--color-text-secondary);")+'">'+i+'</span>'+esc(t);
+      b.onclick = function(){ stage=i; render(); };
+      stepsEl.appendChild(b);
+    });
+  }
+
+  function renderPanel(){
+    var a = lanes[lane];
+    var d = data[lane][stage];
+    var qs = d.q.map(function(x){
+      return '<li style="display:flex; gap:8px; align-items:flex-start; margin:0 0 7px;"><i class="ti ti-arrow-right" aria-hidden="true" style="font-size:15px; color:'+a.soft+'; margin-top:3px;"></i><span style="font-size:13.5px; color:var(--color-text-primary); line-height:1.5;">'+esc(x)+'</span></li>';
+    }).join("");
+    var careHtml = d.care ? ('<div style="display:flex; gap:9px; align-items:flex-start; margin-top:6px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:10px 12px;"><i class="ti ti-shield-half" aria-hidden="true" style="font-size:16px; color:'+a.soft+'; margin-top:2px;"></i><span style="font-size:12.5px; color:var(--color-text-secondary); line-height:1.5;">'+esc(d.care)+'</span></div>') : "";
+    panelEl.innerHTML =
+      '<div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px;">'+
+        '<span style="font-size:17px; font-weight:600; color:var(--color-text-primary);">'+stage+'. '+esc(titles[stage])+'</span>'+
+        '<span style="font-size:12px; padding:4px 10px; border-radius:var(--border-radius-md); background:'+a.fill+'; color:'+a.text+';">'+(lane==="caregiver"?"Caregiver / parent":"Patient / self")+'</span>'+
+      '</div>'+
+      '<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-bottom:14px;">'+
+        '<div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px 14px;">'+
+          '<div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:5px;"><i class="ti ti-mood-search" aria-hidden="true" style="font-size:15px; vertical-align:-2px; margin-right:5px;"></i>Where they are</div>'+
+          '<div style="font-size:14px; color:var(--color-text-primary);">'+esc(d.state)+'</div>'+
+        '</div>'+
+        '<div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px 14px;">'+
+          '<div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:5px;"><i class="ti ti-message-2" aria-hidden="true" style="font-size:15px; vertical-align:-2px; margin-right:5px;"></i>Avatar adapts</div>'+
+          '<div style="font-size:14px; color:var(--color-text-primary);">'+esc(d.tone)+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:9px;"><i class="ti ti-help-circle" aria-hidden="true" style="font-size:15px; vertical-align:-2px; margin-right:5px;"></i>Questions the session surfaces</div>'+
+      '<ul style="list-style:none; padding:0; margin:0 0 4px;">'+qs+'</ul>'+
+      careHtml+
+      '<button style="display:inline-flex; align-items:center; gap:6px; font-size:12.5px; margin-top:14px;" onclick="sendPrompt(\'Draft the avatar opening line for the '+esc(titles[stage])+' stage, '+lane+' lane.\')">Draft the avatar opening line <i class="ti ti-arrow-right" aria-hidden="true" style="font-size:14px;"></i></button>';
+  }
+
+  function render(){
+    cBtn.setAttribute("aria-pressed", lane==="caregiver");
+    pBtn.setAttribute("aria-pressed", lane==="patient");
+    cBtn.style.cssText = "display:inline-flex; align-items:center; gap:6px;" + (lane==="caregiver"?("background:"+lanes.caregiver.fill+"; border:2px solid "+lanes.caregiver.accent+"; color:"+lanes.caregiver.text+";"):"");
+    pBtn.style.cssText = "display:inline-flex; align-items:center; gap:6px;" + (lane==="patient"?("background:"+lanes.patient.fill+"; border:2px solid "+lanes.patient.accent+"; color:"+lanes.patient.text+";"):"");
+    renderSteps();
+    renderPanel();
+  }
+
+  cBtn.onclick = function(){ lane="caregiver"; render(); };
+  pBtn.onclick = function(){ lane="patient"; render(); };
+  render();
+
+  // ----- sendPrompt: in the host this streams to the avatar; here we surface the prompt -----
+  var modal = document.getElementById("promptModal");
+  var promptText = document.getElementById("promptText");
+  window.sendPrompt = function(text){
+    promptText.textContent = text;
+    modal.classList.add("open");
+  };
+  document.getElementById("promptClose").onclick = function(){ modal.classList.remove("open"); };
+  modal.addEventListener("click", function(e){ if (e.target === modal) modal.classList.remove("open"); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") modal.classList.remove("open"); });
+})();
+</script>
+</body>
+</html>
