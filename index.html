@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Ask Your Doctor — Atopic Dermatitis Journey | GAAPP</title>
+<title>Ask Your Doctor: Atopic Dermatitis Journey | GAAPP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -240,18 +240,20 @@
       <p>
         A walkthrough of how the Ask Your Doctor avatar meets patients and caregivers at each stage,
         adapts its tone to where they are emotionally, and surfaces the right questions to bring to a
-        real appointment. Toggle the lane, then step through the six stages.
+        real appointment. Frustration, and the push to escalate care, can surface at any stage, so it
+        lives inside each one rather than as a separate step at the end. Toggle the lane, then step
+        through the five stages.
       </p>
       <div class="hero-meta">
         <span><i class="ti ti-users" aria-hidden="true"></i> Two lanes: caregiver &amp; patient</span>
-        <span><i class="ti ti-stairs" aria-hidden="true"></i> Six journey stages</span>
+        <span><i class="ti ti-stairs" aria-hidden="true"></i> Five journey stages</span>
         <span><i class="ti ti-file-text" aria-hidden="true"></i> Ends in a printable question list</span>
       </div>
     </header>
 
     <section class="card">
       <!-- ====== interactive explainer (host fragment, made standalone) ====== -->
-      <h2 class="sr-only">Interactive prototype of the Ask Your Doctor atopic dermatitis journey for client demo. Toggle between caregiver and patient, then click any of the six stages to see the user's emotional state, how the avatar adapts its tone, the questions the session surfaces, and how sensitive topics are handled non-directively.</h2>
+      <h2 class="sr-only">Interactive prototype of the Ask Your Doctor atopic dermatitis journey for client demo. Toggle between caregiver and patient, then click any of the five stages to see the user's emotional state, where frustration can surface, how the avatar adapts its tone, the questions the session surfaces, and how sensitive topics are handled non-directively.</h2>
 
       <div style="padding: 0.25rem 0 0;">
         <div style="display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:6px;">
@@ -259,7 +261,7 @@
           <button id="laneCare" aria-pressed="true" style="display:inline-flex; align-items:center; gap:6px;"><i class="ti ti-users" aria-hidden="true" style="font-size:16px;"></i> Caregiver / parent</button>
           <button id="lanePat" aria-pressed="false" style="display:inline-flex; align-items:center; gap:6px;"><i class="ti ti-user" aria-hidden="true" style="font-size:16px;"></i> Patient / self</button>
         </div>
-        <p style="font-size:12.5px; color:var(--color-text-tertiary); margin:0 0 14px; line-height:1.6;">~80% of atopic dermatitis patients are age 5 or under, so the caregiver lane is primary. Non-directive throughout, plain language, grounded in input from Dr. Lio and a caregiver advocate.</p>
+        <p style="font-size:12.5px; color:var(--color-text-tertiary); margin:0 0 14px; line-height:1.6;">~80% of atopic dermatitis patients are age 5 or under, so the caregiver lane is primary. Every session opens with a short data-use consent (required because the tool captures research data for IRB), then routes by who you are and where you are. Non-directive throughout, plain language, grounded in input from Dr. Lio and a caregiver advocate.</p>
 
         <div id="steps" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;"></div>
 
@@ -273,7 +275,7 @@
       <!-- ====== /interactive explainer ====== -->
     </section>
 
-    <p class="footer">GAAPP &middot; Ask Your Doctor &mdash; demo build for client walkthrough. Prepared by Pulse Marketing.</p>
+    <p class="footer">GAAPP &middot; Ask Your Doctor &middot; demo build for client walkthrough. Prepared by Pulse Marketing.</p>
   </main>
 
   <!-- sendPrompt modal -->
@@ -294,23 +296,21 @@
     caregiver: {accent:"#BA7517", fill:"#FAEEDA", text:"#633806", soft:"#854F0B"},
     patient:   {accent:"#1D9E75", fill:"#E1F5EE", text:"#085041", soft:"#0F6E56"}
   };
-  var titles = ["Intake","Noticing & searching","Newly diagnosed","Starting treatment","Living with it","Escalating care"];
+  var titles = ["Intake","Noticing & searching","Newly diagnosed","Starting treatment","Living with it"];
   var data = {
     caregiver: [
-      {state:"Just arrived, unsure where to start", tone:"Warm welcome, one simple question", q:["Are we discussing your skin, or your child's?","How old is your child?","Where are you in the journey?","Is this a first visit or a follow-up?"]},
-      {state:"Worried, second-guessed, googling", tone:"Calm, orienting, lowers alarm", q:["What could be causing my child's rash?","Is this eczema, or something else?","Are the creams and remedies we've tried okay to keep using?","What should I write down or photograph before the visit?"]},
-      {state:"Overwhelmed, information overload", tone:"Slow, validating, plain words", q:["What does atopic dermatitis mean long-term, curable or managed?","What should our daily skin routine look like?","What makes it flare, and how do we spot triggers?","What else can come with eczema later (eye issues, asthma, allergies)?"]},
-      {state:"Hopeful but fearful, especially steroids", tone:"Structured, neutral, non-directive", q:["What are the benefits and risks for a young child?","How do we use steroids safely, and what is topical steroid withdrawal?","Are there newer or non-steroid options?","We've tried natural remedies, what should the doctor know?"], care:"Steroids and topical steroid withdrawal are surfaced as questions to ask the doctor, never as instructions to start, stop, or change treatment."},
-      {state:"Flare fatigue, stretched thin", tone:"Practical, warm, acknowledges fatigue", q:["How do we handle sudden flares, and what emergency meds should we have ready?","Is my child's current treatment still the right one?","How do we manage itch and protect sleep?","Where can our family get mental-health or peer support?"], care:"Mental-health and peer support are raised gently as questions for the doctor, never as a diagnosis."},
-      {state:"Frustrated, determined to find next step", tone:"Focused, helps prioritize the asks", q:["What are the options if this isn't working?","Should we see a specialist, and how do we get a referral?","Is my child a candidate for advanced treatments or biologics?","What's the plan from here, and how will we measure progress?"]}
+      {state:"At the welcome screen, before any chat", tone:"Consent first, then routes by who and where", q:["Agree to a short data-use consent (required because this captures research data for IRB).","Are you a parent or caregiver, or the patient?","Which stage would you like to talk about, or not sure?","Then the avatar opens for you: \"I see you're here with your child today. What brings you in?\""], care:"If a visitor isn't sure of their stage, the \"not sure\" path lets the avatar guide a general conversation. They can always come back and start again, free."},
+      {state:"Worried, second-guessed, googling", tone:"Calm, orienting, lowers alarm", q:["What could be causing my child's rash?","Is this eczema, or something else?","Are the creams and remedies we've tried okay to keep using?","What should I write down or photograph before the visit?"], frustration:"No one gives a clear answer. Rachel saw more than 10 doctors before a correct diagnosis. The avatar names that frustration and helps with the next step."},
+      {state:"Overwhelmed, information overload", tone:"Slow, validating, plain words", q:["What does atopic dermatitis mean long-term, curable or managed?","What should our daily skin routine look like?","What makes it flare, and how do we spot triggers?","What else can come with eczema later (eye issues, asthma, allergies)?"], frustration:"\"Why my child?\" The diagnosis can hit hard. The avatar validates the feeling first, then helps focus the next question."},
+      {state:"Hopeful but fearful, especially steroids", tone:"Structured, neutral, non-directive", q:["What are the benefits and risks for a young child?","How do we use steroids safely, and what is topical steroid withdrawal?","Are there newer or non-steroid options?","We've tried natural remedies, what should the doctor know?"], care:"Steroids and topical steroid withdrawal are surfaced as questions to ask the doctor, never as instructions to start, stop, or change treatment.", frustration:"No option is a guaranteed fix, steroids can feel scary, and cost, insurance denials, or no access to biologics may get in the way. The avatar stays honest, never promises a cure, and helps find the next step."},
+      {state:"Flare fatigue, stretched thin, still pushing for better", tone:"Practical, warm, helps prioritize the next step", q:["How do we handle sudden flares, and what should we keep on hand?","Is my child's current treatment still the right one, or do we escalate?","Should we see a specialist or consider advanced treatments or biologics?","How do we manage itch and protect sleep?","Where can our family get mental-health or peer support?"], care:"Mental-health and peer support are raised gently as questions for the doctor, never as a diagnosis.", frustration:"Flare fatigue, feeling alone, or \"this still isn't working.\" The avatar acknowledges it, then helps find the next step, including a referral or specialist when it is time."}
     ],
     patient: [
-      {state:"Just arrived, unsure where to start", tone:"Warm welcome, one simple question", q:["Is this about your own skin?","Where are you with this right now?","What's prompting the visit?"]},
-      {state:"Unsure what's normal", tone:"Calm, orienting, lowers alarm", q:["What should I track before my visit?","Which symptoms matter most to mention?","Is this eczema, or something else?"]},
-      {state:"Anxious, many questions", tone:"Slow, validating, plain words", q:["What does this diagnosis mean day-to-day?","Is this lifelong, or can it be managed?","What triggers should I watch for?"]},
-      {state:"Evaluating treatment options", tone:"Structured, neutral, non-directive", q:["How do these treatments compare?","What should I expect in the first few weeks?","What are the side effects, and how is this used safely?"], care:"Steroid use and alternative remedies are framed as questions to raise with the doctor, never as advice."},
-      {state:"Frustrated by the ongoing effort", tone:"Practical, warm, acknowledges fatigue", q:["What can I adjust when it flares?","When should I come back in?","How do I manage itch and sleep?","Where can I find peer support?"]},
-      {state:"Ready to advocate for more", tone:"Focused, helps prioritize the asks", q:["What's the next level of treatment?","Am I a candidate for a referral or biologic?","What should I ask if this isn't working?"]}
+      {state:"At the welcome screen, before any chat", tone:"Consent first, then routes by who and where", q:["Agree to a short data-use consent (required because this captures research data for IRB).","Are you the patient, or a parent or caregiver?","Which stage would you like to talk about, or not sure?","Then the avatar opens for you: \"What brings you in today?\""], care:"If you aren't sure of your stage, the \"not sure\" path lets the avatar guide a general conversation. You can always come back and start again, free."},
+      {state:"Unsure what's normal", tone:"Calm, orienting, lowers alarm", q:["What should I track before my visit?","Which symptoms matter most to mention?","Is this eczema, or something else?"], frustration:"Searching with no clear answer yet. The avatar names the frustration and helps figure out the next step."},
+      {state:"Anxious, many questions", tone:"Slow, validating, plain words", q:["What does this diagnosis mean day-to-day?","Is this lifelong, or can it be managed?","What triggers should I watch for?"], frustration:"\"Why me?\" It can feel like a lot at once. The avatar validates first, then helps refocus."},
+      {state:"Evaluating treatment options", tone:"Structured, neutral, non-directive", q:["How do these treatments compare?","What should I expect in the first few weeks?","What are the side effects, and how is this used safely?"], care:"Steroid use and alternative remedies are framed as questions to raise with the doctor, never as advice.", frustration:"Frustrated that nothing is a sure fix, or that cost and access get in the way. Options are framed honestly, never as a guaranteed cure."},
+      {state:"Worn down by the effort, ready to advocate for more", tone:"Practical, warm, helps prioritize the next step", q:["What can I adjust when it flares?","Is it time to escalate, with a referral, specialist, or biologic?","When should I come back in?","How do I manage itch and sleep?","Where can I find peer or mental-health support?"], frustration:"Worn down by the constant effort, or \"nothing has fully worked.\" The avatar validates it and points to the next step, including when to escalate."}
     ]
   };
 
@@ -344,6 +344,7 @@
       return '<li style="display:flex; gap:8px; align-items:flex-start; margin:0 0 7px;"><i class="ti ti-arrow-right" aria-hidden="true" style="font-size:15px; color:'+a.soft+'; margin-top:3px;"></i><span style="font-size:13.5px; color:var(--color-text-primary); line-height:1.5;">'+esc(x)+'</span></li>';
     }).join("");
     var careHtml = d.care ? ('<div style="display:flex; gap:9px; align-items:flex-start; margin-top:6px; background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:10px 12px;"><i class="ti ti-shield-half" aria-hidden="true" style="font-size:16px; color:'+a.soft+'; margin-top:2px;"></i><span style="font-size:12.5px; color:var(--color-text-secondary); line-height:1.5;">'+esc(d.care)+'</span></div>') : "";
+    var frustHtml = d.frustration ? ('<div style="display:flex; gap:9px; align-items:flex-start; margin-top:6px; background:'+a.fill+'; border-radius:var(--border-radius-md); padding:10px 12px;"><i class="ti ti-flame" aria-hidden="true" style="font-size:16px; color:'+a.accent+'; margin-top:2px;"></i><span style="font-size:12.5px; color:'+a.text+'; line-height:1.5;"><strong>Frustration can surface here, and the push to escalate.</strong> '+esc(d.frustration)+'</span></div>') : "";
     panelEl.innerHTML =
       '<div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px;">'+
         '<span style="font-size:17px; font-weight:600; color:var(--color-text-primary);">'+stage+'. '+esc(titles[stage])+'</span>'+
@@ -361,6 +362,7 @@
       '</div>'+
       '<div style="font-size:12px; color:var(--color-text-secondary); margin-bottom:9px;"><i class="ti ti-help-circle" aria-hidden="true" style="font-size:15px; vertical-align:-2px; margin-right:5px;"></i>Questions the session surfaces</div>'+
       '<ul style="list-style:none; padding:0; margin:0 0 4px;">'+qs+'</ul>'+
+      frustHtml+
       careHtml+
       '<button style="display:inline-flex; align-items:center; gap:6px; font-size:12.5px; margin-top:14px;" onclick="sendPrompt(\'Draft the avatar opening line for the '+esc(titles[stage])+' stage, '+lane+' lane.\')">Draft the avatar opening line <i class="ti ti-arrow-right" aria-hidden="true" style="font-size:14px;"></i></button>';
   }
